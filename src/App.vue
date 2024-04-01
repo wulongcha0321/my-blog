@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-
+    <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: 'App'
 }
 </script>
 
-<style></style>
+<style lang="stylus" scoped src="@/style/base.styl"></style>

@@ -1,9 +1,7 @@
-const { defineConfig } = require('@vue/cli-service')
 const path = require('path')
 const resolve = path.resolve
 
-module.exports = defineConfig({
-  transpileDependencies: true,
+module.exports = ({
   publicPath: '.',
   // webpack配置
   chainWebpack: config => {
