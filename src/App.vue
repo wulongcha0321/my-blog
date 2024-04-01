@@ -9,5 +9,3 @@ export default {
   name: 'App'
 }
 </script>
-
-<style lang="stylus" scoped src="@/style/base.styl"></style>
