@@ -1,7 +1,9 @@
-import request from '@/utils/request'
+import service from '@/utils/request'
+
+export * from './normal'
 
 export const userLogin = (data) => 
-  request({
+  service({
     url: '/user/login',
     method: 'post',
     data
