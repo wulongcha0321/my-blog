@@ -1,0 +1,36 @@
+.personal-page
+  position relative
+  width: 100%
+  height: 100%
+
+  .personal-introduction
+    position: relative
+    width 100%
+    height: 200px
+    box-shadow 0 1px 3px rgba(0, 0, 0, 0.12)
+
+  .main-content
+    display flex
+    justify-content space-between
+    position: relative
+    width 100%
+    height calc(100% - 250px)
+    padding: 10px
+    background-color $main-bg-color
+
+    .nav-wrap
+      max-height calc(100% - 100px)
+      width: 200px
+      background-color #fff
+      box-shadow 0 1px 3px rgba(0, 0, 0, 0.12)
+      border 1px solid #f2f2f2
+
+      .nav-list
+        border none
+
+    .article-wrap
+      min-height 100%
+      width: calc(100% - 210px)
+      overflow-y auto
+      background-color: #fff
+      border-radius: 4px

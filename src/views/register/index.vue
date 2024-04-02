@@ -1,5 +1,6 @@
 <template lang="pug">
-
+.register-page 
+  
 </template>
 
 <script>

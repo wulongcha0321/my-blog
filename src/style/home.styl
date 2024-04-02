@@ -1,0 +1,48 @@
+$tab-color = #ff5252
+$main-bg-color = rgb(241, 242, 245)
+
+
+.home-page
+  position relative
+  height: 100%
+  width: 100%
+
+  .tab-bar
+    display flex
+    justify-content space-evenly
+    align-items center
+    width: 100%
+    height: 50px
+    background-color: #fff
+    z-index: 100
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12)
+
+    .tab-item
+      height 36px
+      line-height: 36px
+      width: 100px
+      text-align: center
+      font-size: 16px
+      color: #fff
+      cursor: pointer
+      font-weight: 700
+      transition all 0.3s ease
+      background-color $tab-color
+      box-shadow: 2px 2px 0 #000
+      border 1px solid #000
+      border-radius: 10px
+
+      &:hover
+        background-color #fff
+        color $tab-color
+
+      &.active
+        background #fff
+        color: $tab-color
+        box-shadow none
+        transform translateY(2px)
+
+  .page-content
+    position relative
+    height calc(100% - 50px)
+    width: 100%
