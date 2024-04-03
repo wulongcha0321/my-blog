@@ -27,9 +27,8 @@ export default {
 
 <style lang="stylus" scoped>
 .svg-icon
-  height 1em
-  width 1em
-  vertical-align -0.15em
+  height 24px
+  width 24px
   fill currentColor
   overflow hidden
 </style>

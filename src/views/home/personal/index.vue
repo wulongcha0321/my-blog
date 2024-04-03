@@ -33,7 +33,7 @@
         ) 评论过的博文
         
     .article-wrap
-      .toolbar-wrap
+      .toolbar-wrap(v-show="currentType == 'original'")
         el-button(
           size="small"
           type="normal"
@@ -42,15 +42,47 @@
         ) 发布原创博文
 
       .article-list
-        .article-item
-          .article-title
-          .article-content
+        .article-item(v-for="(item,index) in originalList" :key="item.id")
+          .feed-body
+            .feed-header
+              .author-name {{ item.author }}
+              el-button(
+                size="small"
+                type="danger"
+                @click="removeArticle"
+              ) 删除
+            .feed-content
+              .detail-text {{ item.content }}
+          .feed-footer 
+            .footer-box
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(:name="item.like === 1? 'like-fill':'like'")
+                  span 点赞
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(name="repost" style="font-size:14px")
+                  span 转发
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(name="comment" style="font-size:14px")
+                  span 评论
+                
 
   el-dialog(
     :visible.sync="publishDialogVisible"
     title="发布原创博文"
-    width="50%"
+    width="40%"
   )
+    el-input(
+      type="textarea"
+      placeholder="请输入您想发布的内容"
+      v-model="publishContent"
+      :autosize="{ minRows:4 }"
+    )
     .dialog-footer(slot="footer")
       el-button(
         @click="publishDialogVisible = false"
@@ -61,20 +93,23 @@
 import { getOriginalBlog } from '@/api'
 
 import UserInfo from '@/components/UserInfo'
+import SvgIcon from '@/components/SvgIcon'
 
 export default {
   name:"HomePersonal",
   components:{
-    UserInfo
+    UserInfo,
+    SvgIcon
   },
   data() {
     return {
-      currentType:"orignal",
-      orignalList:[],
+      currentType:"original",
+      originalList:[],
       likeList:[],
       repostList:[],
       commentList:[],
       publishDialogVisible:false,
+      publishContent:""
     }
   },
   mounted(){
@@ -83,19 +118,22 @@ export default {
   methods:{
     // 菜单点击
     handleSelectMenu(key){
-      console.log(key)
       switch(key){
-        case 1:
+        case "1":
           this.fetchOriginalBlog()
+          this.currentType = 'original'
           break
-        case 2:
+        case "2":
           this.fetchLikeBlog()
+          this.currentType = 'like'
           break
-        case 3:
+        case "3":
           this.fetchRepostBlog()
+          this.currentType = 'repost'
           break
-        case 4:
+        case "4":
           this.fetchCommentBlog()
+          this.currentType = 'comment'
           break
       }
     },
@@ -103,7 +141,9 @@ export default {
     fetchOriginalBlog(){
       getOriginalBlog()
         .then(res => {
-
+          if(res.code === 200){
+            this.originalList = res.data
+          }
         })
         .catch(err => {
           console.log('get original blog error',err)
@@ -123,6 +163,10 @@ export default {
     },
     showPublish(){
       this.publishDialogVisible = true
+    },
+    // 删除博文
+    removeArticle(){
+      
     }
   }
 }

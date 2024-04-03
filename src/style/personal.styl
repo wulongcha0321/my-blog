@@ -1,4 +1,5 @@
 $main-bg-color = rgb(241, 242, 245)
+$hover-color = #ff8200
 
 .personal-page
   position relative
@@ -35,7 +36,7 @@ $main-bg-color = rgb(241, 242, 245)
       position relative
       min-height 100%
       width: calc(100% - 210px)
-      overflow-y auto
+      overflow hidden
       background-color: #fff
       border-radius: 4px
 
@@ -50,3 +51,80 @@ $main-bg-color = rgb(241, 242, 245)
         height 50px
         padding: 0 15px
         border-bottom 1px dashed #ddd
+
+      .article-list
+        min-height: calc(100% - 50px)
+        width: 100%
+        overflow-y auto
+        background-color: #f2f2f2
+
+        .article-item
+          margin-bottom 8px
+          width: 100%
+          border-radius 4px
+          border-color #f2f2f2
+          background-color #fff
+
+          .feed-body
+            padding 16px 18px 0
+
+            .feed-header
+              display flex
+              align-items: center
+              justify-content: space-between
+
+            .feed-content
+              padding-left 52px
+              padding-top 3px
+
+              .detail-text
+                color #333
+                font-size 15px
+                line-height: 24px
+                word-wrap break-word
+                white-space pre-wrap
+
+          .feed-footer
+            display flex
+            align-self stretch
+
+            .footer-box
+              display flex
+              height 40px
+              line-height: 40px
+              margin 0 15px
+              align-items: center
+              flex 1
+
+              .footer-box-item
+                text-align center
+                padding: 0
+                font-size: 16px
+                color grey
+                font-weight 400
+                height auto
+                cursor pointer
+                flex 1
+                align-self stretch
+
+                &:hover .icon-wrap
+                  background-color: $hover-color
+
+                &:hover .footer_toolbar_wrap span
+                  color $hover-color
+
+
+                .footer_toolbar_wrap
+                  display flex
+                  margin-left -3px
+                  height 100%
+                  justify-content: center
+                  align-items: center
+
+                  .icon-wrap
+                    width 24px
+                    height 24px
+                    border-radius: 50%
+                    margin-right 6px
+
+
