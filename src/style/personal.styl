@@ -76,6 +76,7 @@ $hover-color = #ff8200
             .feed-content
               padding-left 52px
               padding-top 3px
+              padding-right 52px
 
               .detail-text
                 color #333
@@ -108,11 +109,8 @@ $hover-color = #ff8200
                 align-self stretch
 
                 &:hover .icon-wrap
-                  background-color: $hover-color
-
-                &:hover .footer_toolbar_wrap span
-                  color $hover-color
-
+                  color: $hover-color
+                  background-color: rgba(255, 130, 0, 0.1)
 
                 .footer_toolbar_wrap
                   display flex
@@ -125,6 +123,13 @@ $hover-color = #ff8200
                     width 24px
                     height 24px
                     border-radius: 50%
-                    margin-right 6px
+                    margin-right 2px
+                    display flex
+                    justify-content: center
+                    align-items: center
+                    transition: all 0.15s ease-in-out
+
+              .footer-box-item:hover .footer_toolbar_wrap span
+                color $hover-color
 
 

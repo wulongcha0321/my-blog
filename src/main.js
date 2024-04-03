@@ -6,7 +6,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import router from '@/router'
 
-import '@/style/base.styl'
+import '@/style/base.styl';
+import '@/icons'; // icon
 
 Vue.use(ElementUI)
 

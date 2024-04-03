@@ -1,34 +1,38 @@
-<!-- @format -->
-
 <template lang="pug">
-svg(:class='svgClass' aria-hidden='true')
-  use(:xlink:href='iconName')
+svg(:class="svgClass" aria-hidden="true")
+  use(:xlink:href="iconName")
 </template>
 
 <script>
 export default {
-  name: 'SvgIcon',
-  props: {
-    name: {
-      type: String,
-      required: true
+  name:"SvgIcon",
+  props:{
+    iconClass:{
+      type:String,
+      required:true
+    },
+    className:{
+      type:String,
+      default:""
     }
   },
-  computed: {
-    svgClass() {
-      return this.name ? `svg-icon ${this.name}` : 'svg-icon'
+  computed:{
+    iconName(){
+      return `#icon-${this.iconClass}`
     },
-    iconName() {
-      return `#icon-${this.name}`
+    svgClass(){
+      return this.className ? "svg-icon" + this.className : "svg-icon";
     }
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-.svg-icon
-  height 24px
-  width 24px
+<style scoped lang="stylus">
+.svg-icon 
+  width 1em
+  height 1em
+  vertical-align -0.15em
   fill currentColor
   overflow hidden
+
 </style>

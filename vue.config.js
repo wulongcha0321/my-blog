@@ -1,14 +1,20 @@
 const path = require('path')
-const resolve = path.resolve
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 
-module.exports = ({
+module.exports = {
   lintOnSave: false,
   publicPath: '.',
   // webpack配置
-  chainWebpack: config => {
-    config.module.rules.delete('svg')
+  chainWebpack(config) {
+    // set svg-sprite-loader
     config.module
-      .rule('svg-sprite-loader')
+      .rule('svg')
+      .exclude.add(resolve('src/icons'))
+      .end()
+    config.module
+      .rule('icons')
       .test(/\.svg$/)
       .include.add(resolve('src/icons'))
       .end()
@@ -17,5 +23,6 @@ module.exports = ({
       .options({
         symbolId: 'icon-[name]'
       })
-  }
-})
+      .end()
+  },
+}

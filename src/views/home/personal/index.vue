@@ -58,17 +58,17 @@
               .footer-box-item 
                 .footer_toolbar_wrap
                   .icon-wrap
-                    svg-icon(:name="item.like === 1? 'like-fill':'like'")
-                  span 点赞
+                    svg-icon(:icon-class="item.like === 1? 'like-fill':'like'")
+                  span {{ item.like_count }}
               .footer-box-item 
                 .footer_toolbar_wrap
                   .icon-wrap
-                    svg-icon(name="repost" style="font-size:14px")
+                    svg-icon(icon-class="repost" style="font-size:14px")
                   span 转发
               .footer-box-item 
                 .footer_toolbar_wrap
                   .icon-wrap
-                    svg-icon(name="comment" style="font-size:14px")
+                    svg-icon(icon-class="comment" style="font-size:14px")
                   span 评论
                 
 
@@ -93,13 +93,11 @@
 import { getOriginalBlog } from '@/api'
 
 import UserInfo from '@/components/UserInfo'
-import SvgIcon from '@/components/SvgIcon'
 
 export default {
   name:"HomePersonal",
   components:{
-    UserInfo,
-    SvgIcon
+    UserInfo
   },
   data() {
     return {
