@@ -41,7 +41,7 @@
           @click="showPublish"
         ) 发布原创博文
 
-      .article-list
+      .article-list(v-show="currentType == 'original'" style="max-height:calc(100% - 50px)")
         .article-item(v-for="(item,index) in originalList" :key="item.id")
           .feed-body
             .feed-header
@@ -70,12 +70,102 @@
                   .icon-wrap
                     svg-icon(icon-class="comment" style="font-size:14px")
                   span 评论
-                
+
+      .article-list(v-show="currentType == 'like'")
+        .article-item(v-for="(item,index) in likeList" :key="item.id")
+          .feed-body
+            .feed-header
+              .author-name {{ item.author }}
+              el-button(
+                size="small"
+                type="danger"
+                @click="removeArticle"
+              ) 删除
+            .feed-content
+              .detail-text {{ item.content }}
+          .feed-footer 
+            .footer-box
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(:icon-class="item.like === 1? 'like-fill':'like'")
+                  span {{ item.like_count }}
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(icon-class="repost" style="font-size:14px")
+                  span 转发
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(icon-class="comment" style="font-size:14px")
+                  span 评论      
+
+      .article-list(v-show="currentType == 'repost'")
+        .article-item(v-for="(item,index) in repostList" :key="item.id")
+          .feed-body
+            .feed-header
+              .author-name {{ item.author }}
+              el-button(
+                size="small"
+                type="danger"
+                @click="removeArticle"
+              ) 删除
+            .feed-content
+              .detail-text {{ item.content }}
+          .feed-footer 
+            .footer-box
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(:icon-class="item.like === 1? 'like-fill':'like'")
+                  span {{ item.like_count }}
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(icon-class="repost" style="font-size:14px")
+                  span 转发
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(icon-class="comment" style="font-size:14px")
+                  span 评论   
+
+      .article-list(v-show="currentType == 'comment'")
+        .article-item(v-for="(item,index) in commentList" :key="item.id")
+          .feed-body
+            .feed-header
+              .author-name {{ item.author }}
+              el-button(
+                size="small"
+                type="danger"
+                @click="removeArticle"
+              ) 删除
+            .feed-content
+              .detail-text {{ item.content }}
+          .feed-footer 
+            .footer-box
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(:icon-class="item.like === 1? 'like-fill':'like'")
+                  span {{ item.like_count }}
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(icon-class="repost" style="font-size:14px")
+                  span 转发
+              .footer-box-item 
+                .footer_toolbar_wrap
+                  .icon-wrap
+                    svg-icon(icon-class="comment" style="font-size:14px")
+                  span 评论 
 
   el-dialog(
     :visible.sync="publishDialogVisible"
     title="发布原创博文"
     width="40%"
+    top="25vh"
   )
     el-input(
       type="textarea"
@@ -85,12 +175,17 @@
     )
     .dialog-footer(slot="footer")
       el-button(
+        type="primary"
+        @click="handlePublish"
+      ) 发布
+      el-button(
         @click="publishDialogVisible = false"
       ) 取消
 </template>
 
 <script>
-import { getOriginalBlog } from '@/api'
+import { getOriginalBlog, publishOriginalBlog, deleteOriginalBlog, getLikedBlog, getCommentBlog, getRepostBlog } from '@/api'
+import { mapGetters } from 'vuex'
 
 import UserInfo from '@/components/UserInfo'
 
@@ -109,6 +204,9 @@ export default {
       publishDialogVisible:false,
       publishContent:""
     }
+  },
+  computed:{
+    ...mapGetters(['userId'])
   },
   mounted(){
     this.fetchOriginalBlog()
@@ -149,22 +247,85 @@ export default {
     },
     // 点赞过的博文
     fetchLikeBlog(){
-
+      getLikedBlog()
+        .then(res => {
+          if(res.code === 200){
+            this.likeList = res.data
+          }else{
+            this.$message.error(res.message)
+          }
+        })
+        .catch(err => {
+          console.log('get liked blog error',err)
+        })
     },
     // 转发过的博文
     fetchRepostBlog(){
-
+      getRepostBlog()
+        .then(res => {
+          if(res.code === 200){
+            this.repostList = res.data
+          }else{
+            this.$message.error(res.message)
+          }
+        })
+        .catch(() => {})
     },
     // 评论过的博文
     fetchCommentBlog(){
-
+      getCommentBlog()
+        .then(res => {
+          if(res.code === 200){
+            this.commentList = res.data
+          }else{
+            this.$message.error(res.message)
+          }
+        })
+        .catch(() => {})
     },
     showPublish(){
       this.publishDialogVisible = true
     },
+    handlePublish(){
+      if(this.publishContent.trim() === ""){
+        this.$message.error('请输入内容')
+        return
+      }
+      publishOriginalBlog({
+        idCommon:this.userId,
+        content:this.publishContent
+      })
+        .then(res => {
+          if(res.code === 200){
+            this.$message.success('发布成功')
+            this.publishDialogVisible = false
+            this.fetchOriginalBlog()
+          }
+        })
+        .catch(err => {
+          console.log('publish original blog error',err)
+        })
+    },
     // 删除博文
     removeArticle(){
-      
+      this.$confirm(`此操作将永久删除该博文, 是否继续?`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteOriginalBlog()
+          .then((res) => {
+            if(res.code === 200){
+              this.$message.success('删除成功')
+              this.fetchOriginalBlog()
+            }else{
+              this.$message.error(res.message)
+            }
+          })
+          .catch((err) => {
+            console.log('delete original blog error',err)
+          })
+      }).catch(() => {})
     }
   }
 }

@@ -1,12 +1,11 @@
 <template lang="pug">
 .user-info-container
-  //- 用户信息  头像  名字
-  .user-info
-    .user-avatar
-      el-avatar(shape="circle" :size="60" :src="userAvatar")
-    .user-name {{userName}}
+  .user-avatar
+    el-avatar( :size="120" :src="userAvatar")
   //- 用户简介
-  .user-description {{ userDescription }}
+  .user-info
+    .user-name {{ userName }}
+    .user-description {{ userDescription }}
 </template>
 
 <script>

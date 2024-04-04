@@ -37,7 +37,6 @@ $hover-color = #ff8200
       min-height 100%
       width: calc(100% - 210px)
       overflow hidden
-      background-color: #fff
       border-radius: 4px
 
       .toolbar-wrap
@@ -47,13 +46,14 @@ $hover-color = #ff8200
         display flex
         align-items center
         justify-content flex-end
-        width: 100%
+        width: calc(100% - 4px)
         height 50px
         padding: 0 15px
         border-bottom 1px dashed #ddd
+        background-color: #fff
 
       .article-list
-        min-height: calc(100% - 50px)
+        max-height: 100%
         width: 100%
         overflow-y auto
         background-color: #f2f2f2
@@ -132,4 +132,10 @@ $hover-color = #ff8200
               .footer-box-item:hover .footer_toolbar_wrap span
                 color $hover-color
 
+      // 修改滚动条样式
+      .article-list::-webkit-scrollbar
+        width 4px
+        background-color #f2f2f2
 
+      .article-list::-webkit-scrollbar-thumb
+        background-color #ddd

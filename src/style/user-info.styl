@@ -1,18 +1,39 @@
 .user-info-container
-  display flex
+  position relative
   width 100%
   height 200px
-  justify-content: space-around
-  align-items: center
+  background-image:  url('../assets/imgs/user-bg.jpg')
+  background-size: cover
+
+  .user-avatar
+    position: absolute
+    left: 15%
+    top: 50%
+    transform: translateY(-50%)
+    height: 120px
+    width: 120px
+    z-index: 999
 
   .user-info
-    height 80%
-    width 150px
-
-    .user-avatar
-      height: 60px
-      width: 60px
+    position relative
+    top: 110px
+    bottom: 0
+    width: 100%
+    height: 90px
+    background-color: #fff
+    padding-left: calc(15% + 130px)
 
     .user-name
+      height: 45px
+      line-height: 45px
       font-weight 700
+      font-size: 24px
+
+    .user-description
+      height: 45px
       font-size: 16px
+      word-break: break-all
+      width: 450px
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: wrap
