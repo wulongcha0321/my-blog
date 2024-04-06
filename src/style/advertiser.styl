@@ -1,0 +1,146 @@
+.advertiser-page
+  position relative
+  width: 100%
+  height: 100%
+
+  .nav-bar
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    height: 50px
+    width: 100%
+    background-color: rgba(0,0,0,0.95)
+    padding: 0 25px
+
+  .personal-introduction
+    position: relative
+    width 100%
+    height: 200px
+    box-shadow 0 1px 3px rgba(0, 0, 0, 0.12)
+
+  .main-container
+    position: relative
+    width: 100%
+    height: calc(100% - 250px)
+    overflow: hidden
+    background-color: #f2f2f2
+
+    .toolbar-wrap
+      display flex
+      justify-content: center
+      align-items: center
+      height: 50px
+      width 100%
+      background-color: #fff
+
+    .advertisement-list
+      position relative
+      max-width: 1280px
+      margin: 0 auto
+      height calc(100% - 50px)
+      overflow-y auto
+      padding-top: 10px
+
+      .advertisement-item
+        margin-bottom: 8px
+        width: 100%
+        border-radius: 4px
+        border-color: #f2f2f2
+        background-color: #fff
+
+        .feed-body
+          padding 16px 18px 0
+
+          .feed-header
+            display flex
+            align-items: center
+            justify-content: space-between
+
+          .feed-content
+            padding-left 52px
+            padding-top 3px
+            padding-right 52px
+
+            .detail-text
+              color #333
+              font-size 15px
+              line-height: 24px
+              word-wrap break-word
+              white-space pre-wrap
+
+        .feed-footer
+          display flex
+          align-self stretch
+
+          .footer-box
+            display flex
+            height 40px
+            line-height: 40px
+            margin 0 15px
+            align-items: center
+            flex 1
+
+            .footer-box-item
+              text-align center
+              padding: 0
+              font-size: 16px
+              color grey
+              font-weight 400
+              height auto
+              cursor pointer
+              flex 1
+              align-self stretch
+
+              &:hover .icon-wrap
+                color: $hover-color
+                background-color: rgba(255, 130, 0, 0.1)
+
+              .footer_toolbar_wrap
+                display flex
+                margin-left -3px
+                height 100%
+                justify-content: center
+                align-items: center
+
+                .icon-wrap
+                  width 24px
+                  height 24px
+                  border-radius: 50%
+                  margin-right 2px
+                  display flex
+                  justify-content: center
+                  align-items: center
+                  transition: all 0.15s ease-in-out
+
+            .footer-box-item:hover .footer_toolbar_wrap span
+              color $hover-color
+
+        .comment-body
+          width: 100%
+          padding: 10px 20px
+          .comment-form
+            display flex
+            justify-content: space-between
+
+          .comment-title
+            font-weight: 700
+            font-size 16px
+            margin-bottom: 5px
+
+          .comment-list
+            padding-top: 10px
+
+            .comment-item
+              margin-bottom 8px
+              display: flex
+              justify-content: space-between
+              align-items: flex-start
+
+    // 修改滚动条样式
+    .advertisement-list::-webkit-scrollbar
+      width 4px
+      background-color #f2f2f2
+
+    .advertisement-list::-webkit-scrollbar-thumb
+      background-color #ddd
+

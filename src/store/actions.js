@@ -1,6 +1,7 @@
 import {
   SET_USER_INFO,
-  SET_TOKEN
+  SET_TOKEN,
+  LOGOUT
 } from './mutations'
 
 export default {
@@ -9,5 +10,8 @@ export default {
   },
   setToken({ commit }, token) {
     commit(SET_TOKEN, token)
+  },
+  logout({ commit }){
+    commit(LOGOUT)
   }
 }

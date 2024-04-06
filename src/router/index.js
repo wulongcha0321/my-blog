@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path:'/',
-    redirect:'/home'
+    redirect:'/advertiser'
   },
   {
     path:'/login',
@@ -56,6 +56,22 @@ const routes = [
         }
       }
     ]
+  },
+  {
+    path:'/admin',
+    name:"Admin",
+    component:() => import('@/views/admin'),
+    meta:{
+      title:"管理员"
+    }
+  },
+  {
+    path:'/advertiser',
+    name:"Advertiser",
+    component:() => import('@/views/advertiser'),
+    meta:{
+      title:"广告商"
+    }
   }
 ]
 
