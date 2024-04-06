@@ -70,7 +70,7 @@ export const clickLike = (data) => {
 // 取消点赞
 export const cancelLike = (data) => {
   return service({
-    url:"user/cancelLike",
+    url:"/user/cancelLike",
     method:"post",
     data
   })
@@ -79,7 +79,7 @@ export const cancelLike = (data) => {
 // 转发博文
 export const clickRepost = (data) => {
   return service({
-    url:"user/transmit",
+    url:"/user/transmit",
     method:"post",
     data
   })
@@ -88,7 +88,25 @@ export const clickRepost = (data) => {
 // 取消转发
 export const cancelRepost = (data) => {
   return service({
-    url:"user/cancelTransmit",
+    url:"/user/cancelTransmit",
+    method:"post",
+    data
+  })
+}
+
+// 评论
+export const clickComment = (data) => {
+  return service({
+    url:"/user/comment",
+    method:"post",
+    data
+  })
+}
+
+// 取消评论
+export const cancelComment = (data) => {
+  return service({
+    url:"/user/cancelComment",
     method:"post",
     data
   })

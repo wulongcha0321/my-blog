@@ -28,15 +28,31 @@ const routes = [
   {
     path:'/home',
     name:"Home",
-    redirect:'/personal', // 重定向到个人中心
+    redirect:'/home/firstpage', // 重定向到个人中心
     component:() => import('@/views/home'),
     children:[
       {
-        path:'/personal',
+        path:'personal',
         name:"HomePersonal",
         component:() => import('@/views/home/personal'),
         meta:{
           title:"个人中心"
+        }
+      },
+      {
+        path:"firstpage",
+        name:"FirstPage",
+        component:() => import('@/views/home/firstpage'),
+        meta:{
+          title:"首页"
+        }
+      },
+      {
+        path:"advertisement",
+        name:"Advertisement",
+        component:() => import('@/views/home/advertisement'),
+        meta:{
+          title:"推荐广告"
         }
       }
     ]

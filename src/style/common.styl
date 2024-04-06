@@ -1,0 +1,109 @@
+$hover-color = #ff8200
+
+.adv-page
+  position relative
+  height 100%
+  width 100%
+  padding: 10px 20px
+  background: #f2f2f2
+
+  .article-list
+    max-height: 100%
+    width: 100%
+    overflow-y auto
+    background-color: #f2f2f2
+
+    .article-item
+      margin-bottom 8px
+      width: 100%
+      border-radius 4px
+      border-color #f2f2f2
+      background-color #fff
+
+      .feed-body
+        padding 16px 18px 0
+
+        .feed-header
+          display flex
+          align-items: center
+          justify-content: space-between
+
+        .feed-content
+          padding-left 52px
+          padding-top 3px
+          padding-right 52px
+
+          .detail-text
+            color #333
+            font-size 15px
+            line-height: 24px
+            word-wrap break-word
+            white-space pre-wrap
+
+      .feed-footer
+        display flex
+        align-self stretch
+
+        .footer-box
+          display flex
+          height 40px
+          line-height: 40px
+          margin 0 15px
+          align-items: center
+          flex 1
+
+          .footer-box-item
+            text-align center
+            padding: 0
+            font-size: 16px
+            color grey
+            font-weight 400
+            height auto
+            cursor pointer
+            flex 1
+            align-self stretch
+
+            &:hover .icon-wrap
+              color: $hover-color
+              background-color: rgba(255, 130, 0, 0.1)
+
+            .footer_toolbar_wrap
+              display flex
+              margin-left -3px
+              height 100%
+              justify-content: center
+              align-items: center
+
+              .icon-wrap
+                width 24px
+                height 24px
+                border-radius: 50%
+                margin-right 2px
+                display flex
+                justify-content: center
+                align-items: center
+                transition: all 0.15s ease-in-out
+
+          .footer-box-item:hover .footer_toolbar_wrap span
+            color $hover-color
+
+      .comment-body
+        width: 100%
+        padding: 10px 20px
+        .comment-form
+          display flex
+          justify-content: space-between
+
+        .comment-title
+          font-weight: 700
+          font-size 16px
+          margin-bottom: 5px
+
+        .comment-list
+          padding-top: 10px
+
+          .comment-item
+            margin-bottom 8px
+            display: flex
+            justify-content: space-between
+            align-items: flex-start

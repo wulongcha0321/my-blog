@@ -11,8 +11,8 @@ const store = new Vuex.Store({
   state:{
     userInfo:{
       userName:"",
-      userId:"",
     },
+    userId:"",
     token:""
   },
   actions,

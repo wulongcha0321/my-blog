@@ -31,6 +31,14 @@ export default {
   methods:{
     changeActiveTab(tab){
       this.activeTab = tab
+
+      if(tab === 'ad'){
+        this.$router.push('/home/advertisement')
+      }else if(tab === 'personal'){
+        this.$router.push('/home/personal')
+      }else{
+        this.$router.push('/home/firstpage')
+      }
     }
   }
 }
